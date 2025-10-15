@@ -1,4 +1,26 @@
-/llm-service/.ipynb_checkpoints
-/frontend/node_modules
-/frontend/.next
-/backend/__pycache__
+# Node.js / Next.js
+node_modules/
+.next/
+out/
+build/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
