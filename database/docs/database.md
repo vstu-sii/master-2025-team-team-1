@@ -94,7 +94,7 @@
 
 ### 1.3. ER-диаграмма (PlantUML)
 
-![Er-диаграмма](diagrams/ER.png)
+![Er-диаграмма](ER.jpg)
 
 ---
 
