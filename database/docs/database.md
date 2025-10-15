@@ -60,7 +60,7 @@
 | `result_id` | UUID | Уникальный идентификатор результата | PRIMARY KEY |
 | `candidate_id` | UUID | Идентификатор кандидата | FOREIGN KEY (`Candidates`) |
 | `vacancy_id` | UUID | Идентификатор вакансии | FOREIGN KEY (`Vacancies`) |
-| `score` | DECIMAL(5,2) | Скоринг соответствия (0-100%) | NOT NULL |
+| `score` | DECIMAL(3) | Скоринг соответствия (0-100%) | NOT NULL |
 | `rating` | VARCHAR(50) | Рейтинг кандидата (Top, Medium, Low) | NOT NULL |
 | `strengths` | TEXT | Выявленные сильные стороны | |
 | `gaps` | TEXT | Выявленные пробелы | |
