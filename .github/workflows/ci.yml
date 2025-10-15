@@ -2,9 +2,9 @@ name: Full Stack CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, feedback, develop ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, feedback, develop ]
 
 jobs:
   frontend-test:
