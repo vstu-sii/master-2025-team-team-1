@@ -1,0 +1,21 @@
+name: Deploy to Development
+
+on:
+  push:
+    branches: [ develop ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: development
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Deploy to Dev
+      run: |
+        echo "Deploying Full Stack to Development..."
+        # команды деплоя на dev сервер
+        # scp, ssh, kubectl 
+        echo "Deployment completed"
