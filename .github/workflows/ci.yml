@@ -127,11 +127,11 @@ jobs:
     
     - name: Build Docker images
       run: |
-        docker-compose -f docker-compose.dev.yml build
+        docker compose -f docker-compose.dev.yml build
     
     - name: Test Docker Compose
       run: |
-        docker-compose -f docker-compose.dev.yml up -d
+        docker compose -f docker-compose.dev.yml up -d
         sleep 30
-        docker-compose -f docker-compose.dev.yml ps
-        docker-compose -f docker-compose.dev.yml down
+        docker compose -f docker-compose.dev.yml ps
+        docker compose -f docker-compose.dev.yml down
