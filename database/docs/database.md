@@ -94,7 +94,7 @@
 
 ### 1.3. ER-диаграмма (PlantUML)
 
-![Er-диаграмма](database/ER.jpg)
+![Er-диаграмма](https://github.com/vstu-sii/master-2025-team-team-1/blob/feedback/database/ER.jpg)
 
 ---
 
