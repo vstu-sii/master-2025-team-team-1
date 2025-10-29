@@ -29,8 +29,8 @@
 ## 2. Level 1: System Context
 
 ### 2.1 Context Diagram
+<img width="1114" height="781" alt="С1" src="https://github.com/user-attachments/assets/4da39e9d-a76f-4e69-972c-13440f68602f" />
 
-![Контекст диаграмма](docs/architecture/С1.png)
 
 ### 2.2 Users and External Systems
 
