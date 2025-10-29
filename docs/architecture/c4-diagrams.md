@@ -57,7 +57,8 @@
 
 ### 3.1 Container Diagram
 
-![Контейнер диаграмма](docs/architecture/C2.png)
+<img width="1336" height="1548" alt="C2" src="https://github.com/user-attachments/assets/57da75c5-a751-485e-94df-860e1aebf2ca" />
+
 
 ### 3.2 Container Descriptions
 
@@ -186,11 +187,13 @@
 
 ### 4.1 Core API Components
 
-![Компонент диаграмма API](docs/architecture/C3.png)
+<img width="1584" height="1126" alt="С3" src="https://github.com/user-attachments/assets/62520283-e55c-4348-8120-a83d6e00241d" />
+
 
 ### 4.2 ML Service Components
 
-![Компонент диаграмма ML](docs/architecture/C3.2.png)
+<img width="1342" height="1115" alt="С3 2" src="https://github.com/user-attachments/assets/35bb61a1-fd52-48b0-b226-09e314e9d625" />
+
 
 ### 4.3 Component Descriptions
 
