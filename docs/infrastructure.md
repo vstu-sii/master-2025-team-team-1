@@ -27,16 +27,18 @@ Jupyter: http://localhost:8888
 
 5. Для остановки приложения нажми Ctrl+C в терминале, или выполни:
 
-```docker-compose -f docker-compose.dev.yml down
 ```
+docker-compose -f docker-compose.dev.yml down
+```
+
 ## Запуск мониторинга
 ```
 cd monitoring
 docker-compose up -d
 ```
 Открой в браузере:
-Grafana: http://localhost:3001 (admin/admin)
-Prometheus: http://localhost:9090
+- **Grafana**: http://localhost:3001 (admin/admin)
+- **Prometheus**: http://localhost:9090
 
 Для закрытия мониторинга:
 ```
