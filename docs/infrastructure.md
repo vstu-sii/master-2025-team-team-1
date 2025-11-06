@@ -1,6 +1,6 @@
-# My AI App
+# AI App
 
-Проект с использованием Docker Compose для локальной разработки.
+Использование Docker Compose
 
 ## Состав
 
@@ -11,23 +11,38 @@
 
 ## Как запустить
 
-1. Убедись, что установлены [Docker](https://www.docker.com/products/docker-desktop) и Docker Compose.
+1. Убедись, что установлены [Docker](https://www.docker.com/products/docker-desktop) и Docker Compose. Docker Desktop должен быть запущен.
 2. В корне проекта выполни:
 
 ```bash
-docker-compose -f docker-compose.dev.yml up --build```
+docker-compose -f docker-compose.dev.yml up --build
+```
 
 3. Открой в браузере:
 Frontend: http://localhost:3000
 Backend API: http://localhost:8000/api/hello
 Jupyter: http://localhost:8888
 
-4. Проверяй, делай изменения в коде.
+4. Меняй код - изменения применяются автоматически!
 
 5. Для остановки приложения нажми Ctrl+C в терминале, или выполни:
 
-```docker-compose -f docker-compose.dev.yml down```
+```docker-compose -f docker-compose.dev.yml down
+```
+##Запуск мониторинга
+```
+cd monitoring
+docker-compose up -d
+```
+Открой в браузере:
+Grafana: http://localhost:3001 (admin/admin)
+Prometheus: http://localhost:9090
 
+Для закрытия мониторинга:
+```
+cd monitoring
+docker-compose down
+```
 ##Если есть ошибка (500 Internal Server Error for API route and version): 
 
 🐳 Перезапусти Docker через системный трей:

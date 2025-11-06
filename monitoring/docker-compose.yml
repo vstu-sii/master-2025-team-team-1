@@ -1,16 +1,56 @@
-global:
-  scrape_interval: 15s
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-lifecycle'
+    networks:
+      - monitoring-net
 
-scrape_configs:
-  - job_name: 'backend'
-    static_configs:
-      - targets: ['backend:8000']
-    metrics_path: /metrics
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - grafana_data:/var/lib/grafana
+    networks:
+      - monitoring-net
+    depends_on:
+      - prometheus
 
-  - job_name: 'postgres'
-    static_configs:
-      - targets: ['postgres-exporter:9187']
+  node-exporter:
+    image: prom/node-exporter:latest
+    ports:
+      - "9100:9100"
+    networks:
+      - monitoring-net
 
-  - job_name: 'node'
-    static_configs:
-      - targets: ['node-exporter:9100']
+  postgres-exporter:
+    image: prometheuscommunity/postgres-exporter:latest
+    environment:
+      - DATA_SOURCE_NAME=postgresql://myuser:mypass@db:5432/mydb?sslmode=disable
+    ports:
+      - "9187:9187"
+    networks:
+      - monitoring-net
+      - app-net  # ТОЛЬКО этот сервис имеет доступ к приложению
+
+networks:
+  monitoring-net:
+    driver: bridge
+  app-net:
+    external: true
+    name: master-2025-team-team-1_default  # Имя сети вашего приложения
+
+volumes:
+  prometheus_data:
+  grafana_data:

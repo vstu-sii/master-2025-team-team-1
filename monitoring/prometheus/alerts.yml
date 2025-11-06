@@ -1,0 +1,10 @@
+groups:
+  - name: example
+    rules:
+      - alert: HighRequestLatency
+        expr: job:request_latency_seconds:mean5m{job="backend"} > 0.5
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High request latency on {{ $labels.instance }}"
