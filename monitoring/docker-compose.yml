@@ -42,14 +42,14 @@ services:
       - "9187:9187"
     networks:
       - monitoring-net
-      - app-net  # ТОЛЬКО этот сервис имеет доступ к приложению
+      - app-net 
 
 networks:
   monitoring-net:
     driver: bridge
   app-net:
     external: true
-    name: master-2025-team-team-1_default  # Имя сети вашего приложения
+    name: master-2025-team-team-1_default
 
 volumes:
   prometheus_data:
