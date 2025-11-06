@@ -29,7 +29,7 @@ Jupyter: http://localhost:8888
 
 ```docker-compose -f docker-compose.dev.yml down
 ```
-##Запуск мониторинга
+## Запуск мониторинга
 ```
 cd monitoring
 docker-compose up -d
@@ -43,7 +43,7 @@ Prometheus: http://localhost:9090
 cd monitoring
 docker-compose down
 ```
-##Если есть ошибка (500 Internal Server Error for API route and version): 
+## Если есть ошибка (500 Internal Server Error for API route and version): 
 
 🐳 Перезапусти Docker через системный трей:
 
