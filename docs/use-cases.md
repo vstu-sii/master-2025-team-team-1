@@ -13,7 +13,7 @@
 ---
 
 ## Use-case Diagram
----
+
 ![use-case](diagrams/main_ai_hr_assistant.png)
 ---
 
