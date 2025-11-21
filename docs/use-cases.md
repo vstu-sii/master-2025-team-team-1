@@ -1,4 +1,4 @@
-# D2: Use-case Narrative - AI Meal Planner
+# D2: Use-case Narrative - AI HR
 
 ## Список Use Cases (Сценарии Использования)
 
