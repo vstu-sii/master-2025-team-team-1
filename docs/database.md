@@ -90,7 +90,8 @@
 
 ## 1.2 ER-диаграмма
 
-![ER-диаграмма](<img width="557" height="668" alt="Er_diagram" src="https://github.com/user-attachments/assets/a7140bf2-dc38-4f24-9c66-e8a12b9646db" />)
+<img width="557" height="668" alt="Er_diagram" src="https://github.com/user-attachments/assets/1256567e-d840-4ae8-a7f2-43a57aa5ef22" />
+
 
 ```plantuml
 @startuml
