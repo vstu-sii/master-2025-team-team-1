@@ -1,0 +1,195 @@
+openapi: 3.1.0
+info:
+  title: Resume Parsing API
+  version: 1.0.0
+  description: >
+    API для регистрации пользователей, создания вакансий,
+    парсинга резюме и экспорта данных.
+
+servers:
+  - url: https://api.resume-parser.app
+
+tags:
+  - name: Auth
+  - name: Vacancies
+  - name: Parsing
+  - name: Data
+
+paths:
+
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Регистрация пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  minLength: 8
+      responses:
+        "201":
+          description: Пользователь создан
+          content:
+            application/json:
+              example:
+                user_id: "u_123"
+                email: "hr@mail.com"
+        "400":
+          description: Ошибка валидации
+
+  /vacancies:
+    post:
+      tags: [Vacancies]
+      summary: Создать вакансию
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title]
+              properties:
+                title:
+                  type: string
+                  minLength: 2
+                description:
+                  type: string
+      responses:
+        "201":
+          description: Вакансия создана
+          content:
+            application/json:
+              example:
+                vacancy_id: "v_001"
+                title: "Python Developer"
+
+    get:
+      tags: [Vacancies]
+      summary: Получить список вакансий
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              example:
+                vacancies:
+                  - vacancy_id: "v_001"
+                    title: "Python Developer"
+
+  /vacancies/{vacancy_id}/params:
+    put:
+      tags: [Vacancies]
+      summary: Указать параметры вакансии
+      parameters:
+        - in: path
+          name: vacancy_id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [skills, experience]
+              properties:
+                skills:
+                  type: array
+                  items:
+                    type: string
+                experience:
+                  type: string
+      responses:
+        "200":
+          description: Параметры сохранены
+        "404":
+          description: Вакансия не найдена
+
+  /parse/start:
+    post:
+      tags: [Parsing]
+      summary: Запустить парсинг
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [vacancy_id]
+              properties:
+                vacancy_id:
+                  type: string
+                auto_scroll:
+                  type: boolean
+                parse_all_pages:
+                  type: boolean
+      responses:
+        "200":
+          description: Парсинг запущен
+          content:
+            application/json:
+              example:
+                status: "running"
+                collected: 0
+
+  /parse/status:
+    get:
+      tags: [Parsing]
+      summary: Получить статус парсинга
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              example:
+                status: "running"
+                collected: 42
+
+  /data/export:
+    post:
+      tags: [Data]
+      summary: Экспортировать данные
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [format]
+              properties:
+                format:
+                  type: string
+                  enum: [csv, google_sheets, telegram]
+      responses:
+        "200":
+          description: Экспорт выполнен
+          content:
+            application/json:
+              example:
+                status: "success"
+                url: "https://..."
+
+  /data:
+    get:
+      tags: [Data]
+      summary: Получить список собранных резюме
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              example:
+                items:
+                  - name: "Иван Петров"
+                    position: "Python Developer"
+                    experience: "3 года"
