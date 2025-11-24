@@ -92,6 +92,7 @@
 
 <img width="557" height="668" alt="Er_diagram" src="https://github.com/user-attachments/assets/1256567e-d840-4ae8-a7f2-43a57aa5ef22" />
 
+## Код ER-диаграммы (PlantUML)
 
 ```plantuml
 @startuml
