@@ -15,7 +15,7 @@
 
 ## Use-case Diagram
 
-<img width="1500" height="385" alt="main_ai_hr_assistant" src="https://github.com/user-attachments/assets/925cbc72-b2de-45c2-a89b-28a0cbd23b90" />
+![photo_2025-11-25_22-49-01](https://github.com/user-attachments/assets/f75f88fe-6395-433c-a5bc-e63366f7b4e2)
 
 ---
 
