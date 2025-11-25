@@ -1,4 +1,4 @@
-# D2: Use-case Narrative - AI HR
+# D2: Use-case Narrative - AI HR Assistant
 
 ## Список Use Cases (Сценарии Использования)
 
@@ -16,7 +16,7 @@
 ## Use-case Diagram
 
 
-<img width="866" height="829" alt="Screenshot_1" src="https://github.com/user-attachments/assets/6b4ae37f-e0f6-4fd1-a7cf-894376c91ff2" />
+
 
 ---
 
