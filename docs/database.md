@@ -207,7 +207,7 @@ Vacancies ||--o{ LLMData : related_to
   "response": "{\n  \"score\": 92,\n  \"interview_questions\": [\n    \"Расскажите о ваших проектах на Django.\",\n    \"Какие SQL-запросы вы используете в работе?\",\n    \"Опишите опыт работы в компании X.\"\n  ],\n  \"json_output\": {\n    \"candidate_name\": \"Иван Иванов\",\n    \"skills\": [\"Python\", \"Django\", \"SQL\"],\n    \"experience\": [\n      {\n        \"company\": \"Компания X\",\n        \"role\": \"Python разработчик\",\n        \"years\": 3\n      }\n    ],\n    \"summary\": \"Python разработчик с 3-летним опытом и сильной экспертизой в Django.\"\n  }\n}",
 
   "metadata": {
-    "model_name": "gpt-4.1",
+    "model_name": "model X 3.1",
     "resume_text": "Иван Иванов, Python разработчик с 3 годами опыта. Навыки: Python, Django, SQL. Работал в компании X.",
     "job_description": "Требуется Python разработчик для веб-приложений. Требования: Django, SQL, опыт от 2 лет.",
     "ground_truth_score": 90,
