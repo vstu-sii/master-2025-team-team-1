@@ -15,7 +15,8 @@
 
 ## Use-case Diagram
 
-![photo_2025-11-25_22-49-01](https://github.com/user-attachments/assets/f75f88fe-6395-433c-a5bc-e63366f7b4e2)
+
+<img width="866" height="829" alt="Screenshot_1" src="https://github.com/user-attachments/assets/6b4ae37f-e0f6-4fd1-a7cf-894376c91ff2" />
 
 ---
 
