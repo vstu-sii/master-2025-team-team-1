@@ -42,10 +42,10 @@
     "resume_text": "", # Пример для тестирования обработки пустых данных
     "job_description": "Описание вакансии."
   },
-  { # Данные для оценки эмбеддингов
+  { 
     "text1": "Кошка сидела на коврике.",
     "text2": "Feline resting on a rug.",
-    "ground_truth_similarity": 0.7, # Примерная ожидаемая схожесть (0-1)
+    "ground_truth_similarity": 0.7, 
     "ground_truth_questions": [],
     "ground_truth_json": {}
   },
