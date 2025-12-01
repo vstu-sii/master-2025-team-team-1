@@ -66,8 +66,6 @@ EXPLANATION: <short explanation in Russian>
 - извлекается число после `SCORE:`;
 - извлекается текст после `EXPLANATION:`.
 
----
-
 ### 3.2. Эвристический baseline
 
 Если:
