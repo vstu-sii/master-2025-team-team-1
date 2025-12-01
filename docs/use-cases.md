@@ -15,7 +15,8 @@
 
 ## Use-case Diagram
 
-![use-case](diagrams/main_ai_hr_assistant.png)
+![Uploading photo_2025-11-26_12-13-05.jpg…]()
+
 ---
 
 ### UC-1: Регистрация пользователя
