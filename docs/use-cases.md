@@ -15,7 +15,7 @@
 
 ## Use-case Diagram
 
-![Uploading photo_2025-11-26_12-13-05.jpg…]()
+![photo_2025-11-26_12-13-05](https://github.com/user-attachments/assets/d749b04a-d113-45ff-bd41-f16231ba03b8)
 
 ---
 
