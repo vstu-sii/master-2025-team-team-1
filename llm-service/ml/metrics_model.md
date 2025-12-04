@@ -213,7 +213,7 @@ def call_mistral_chat(prompt: str,
             return text, latency
         
 ```
-** Агрегация по моделям: **
+**Агрегация по моделям:**
 ```python
 for model_name, group in df.groupby("model"):
     avg_latency = group["latency_sec"].mean()
