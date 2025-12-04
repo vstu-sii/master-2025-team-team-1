@@ -15,6 +15,8 @@
 
 ## Use-case Diagram
 
+<img width="1372" height="398" alt="Screenshot_2" src="https://github.com/user-attachments/assets/73c1970b-05c5-4352-a26d-89041b4c5193" />
+
 ---
 
 ### UC-0: Авторизация пользователя
