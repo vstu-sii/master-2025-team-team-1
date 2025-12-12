@@ -3,7 +3,6 @@ version: '3.8'
 networks:
   app-network:
     driver: bridge
-
 services:
   # PostgreSQL
   db:
@@ -43,12 +42,14 @@ services:
       # Дополнительные настройки для отладки
       LANGFUSE_DEBUG: "true"
       LANGFUSE_FLUSH_INTERVAL: "2"
+      PROMETHEUS_MULTIPROC_DIR: /tmp/prometheus
     depends_on:
       db:
         condition: service_healthy
     volumes:
       - ./backend:/app
-      - /tmp:/tmp  # Для логов
+      - /tmp:/tmp
+      - /tmp/prometheus:/tmp/prometheus
     command: >
       sh -c "sleep 5 && uvicorn main:app --host 0.0.0.0 --port 8000 --reload --log-level debug"
     healthcheck:

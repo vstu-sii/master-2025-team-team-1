@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -10,7 +12,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--web.enable-lifecycle'
     networks:
-      - monitoring-net
+      - app-network
 
   grafana:
     image: grafana/grafana:latest
@@ -23,7 +25,7 @@ services:
       - ./grafana/provisioning:/etc/grafana/provisioning
       - grafana_data:/var/lib/grafana
     networks:
-      - monitoring-net
+      - app-network
     depends_on:
       - prometheus
 
@@ -32,24 +34,12 @@ services:
     ports:
       - "9100:9100"
     networks:
-      - monitoring-net
-
-  postgres-exporter:
-    image: prometheuscommunity/postgres-exporter:latest
-    environment:
-      - DATA_SOURCE_NAME=postgresql://myuser:mypass@db:5432/mydb?sslmode=disable
-    ports:
-      - "9187:9187"
-    networks:
-      - monitoring-net
-      - app-net 
+      - app-network
 
 networks:
-  monitoring-net:
+  app-network:
     driver: bridge
-  app-net:
-    external: true
-    name: master-2025-team-team-1_default
+    name: master-2025-team-team-1_app-network
 
 volumes:
   prometheus_data:

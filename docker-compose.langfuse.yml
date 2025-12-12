@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   postgres:
@@ -26,7 +26,7 @@ services:
 
 networks:
   app-network:
-    external: true
+    driver: bridge
     name: master-2025-team-team-1_app-network
 
 volumes:

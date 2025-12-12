@@ -2,6 +2,9 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Создаем директорию для prometheus multiprocess
+RUN mkdir -p /tmp/prometheus && chmod 777 /tmp/prometheus
+
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
