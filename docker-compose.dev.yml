@@ -1,5 +1,9 @@
 version: '3.8'
 
+networks:
+  app-network:
+    driver: bridge
+
 services:
   # PostgreSQL
   db:
@@ -10,6 +14,8 @@ services:
       POSTGRES_DB: mydb
     ports:
       - "5432:5432"
+    networks:
+      - app-network  
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: always
@@ -21,8 +27,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    networks:
+      - app-network
     environment:
       DATABASE_URL: postgresql://myuser:mypass@db:5432/mydb
+      LANGFUSE_PUBLIC_KEY: pk-lf-1ce9069b-e37a-4f74-8c55-e8a2642025fe
+      LANGFUSE_SECRET_KEY: sk-lf-49f7a7be-037a-4ec9-b1e2-efcba447f32e
+      LANGFUSE_HOST: http://localhost:3002
     depends_on:
       - db
     volumes:
@@ -36,6 +47,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    networks:
+      - app-network
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -52,6 +65,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8888:8888"
+    networks:
+      - app-network
     volumes:
       - ./llm-service:/workspace
     working_dir: /workspace

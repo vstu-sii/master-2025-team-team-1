@@ -1,3 +1,5 @@
 fastapi
 uvicorn[standard]
 prometheus-client
+langfuse==2.28.0
+python-dotenv
