@@ -51,7 +51,7 @@ docker-compose up -d
 - http://localhost:8000/metrics предоставляет метрики в формате Prometheus для сбора системой мониторинга, включая количество запросов, время ответа, использование памяти и CPU;
 - http://localhost:8000/api/metrics/summary возвращает сводку этих метрик в удобном JSON формате для быстрой проверки состояния приложения;
 - http://localhost:8000/api/health является эндпоинтом проверки работоспособности (health check), который показывает общий статус сервиса, доступность Langfuse и базовую системную информацию, используемый оркестраторами и системами мониторинга для определения доступности сервиса;
-- http://localhost:9090/targets - Endpoint http://backend:8000/metrics должен находится в статусе "Up";
+- http://localhost:9090/targets - Endpoint http://backend:8000/metrics должен находиться в статусе "Up".
 
 **Metrics Dashbord в Grafana**:
 В http://localhost:3001/dashboards можно открыть созданный Metric Dashbord и посмотреть графики показателей: 
