@@ -27,7 +27,7 @@ services:
 networks:
   app-network:
     external: true
-    name: master-2025-team-team-1_app-network  # ⚠️ ИЗМЕНИТЕ НА ИМЯ ВАШЕЙ СЕТИ!
+    name: master-2025-team-team-1_app-network 
 
 volumes:
   pgdata:
