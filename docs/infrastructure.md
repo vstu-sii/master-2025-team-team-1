@@ -18,6 +18,13 @@
 docker-compose -f docker-compose.dev.yml up --build
 ```
 
+🩺 Health checks (автоматическая проверка)
+Сервисы автоматически проверяют своё состояние:
+
+- **Backend**: http://localhost:8000/health
+- **Frontend**: проверяется доступность порта 3000
+- **База данных**: проверяется подключение
+
 3. Открой в браузере:
 Frontend: http://localhost:3000
 Backend API: http://localhost:8000/api/hello
@@ -25,7 +32,7 @@ Jupyter: http://localhost:8888
 
 4. Меняй код - изменения применяются автоматически!
 
-5. Для остановки приложения нажми Ctrl+C в терминале, или выполни:
+5. Для остановки приложения нажми Ctrl+C в терминале и выполни:
 
 ```
 docker-compose -f docker-compose.dev.yml down
@@ -45,6 +52,37 @@ docker-compose up -d
 cd monitoring
 docker-compose down
 ```
+
+## Запуск Langfuse
+```
+docker-compose -f docker-compose.langfuse.yml up --build
+```
+**Доступ к Langfuse UI**: http://localhost:3002
+1. Откройте http://localhost:3002;
+2. Введите электронную почту: admin@admin.com;
+3. Введите пароль: adminadmin.
+
+**Тестирование Langfuse UI**: http://localhost:3002
+1. Откройте http://localhost:8000/api/langfuse-test;
+2. Скопируйте trace_id из ответа;
+3. Откройте Langfuse UI: http://localhost:3002;
+4. Вставьте trace_id в поиск;
+5. Нажмите на трассировку для просмотра деталей.
+
+**Просмотр свежих трассировок в режиме реального времени**:
+1. Откройте http://localhost:3002;
+2. Перейдите в "Traces";
+3. Используйте фильтры (timestamp: last 5 minutes, status: error (для поиска ошибок), name: contains "chat" (для конкретных эндпоинтов)).
+
+**Просмотр дашбордов**:
+1. В Langfuse UI нажмите "Dashboards";
+2. Выберите промежуток времени и, если нужно, фильтры.
+
+- Для остановки Langfuse нажми Ctrl+C в терминале и выполни:
+```
+docker-compose -f docker-compose.langfuse.yml down
+```
+
 ## Если есть ошибка (500 Internal Server Error for API route and version): 
 
 🐳 Перезапусти Docker через системный трей:

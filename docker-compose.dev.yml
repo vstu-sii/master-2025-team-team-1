@@ -19,6 +19,12 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser -d mydb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   # Backend (FastAPI)
   backend:
@@ -31,14 +37,41 @@ services:
       - app-network
     environment:
       DATABASE_URL: postgresql://myuser:mypass@db:5432/mydb
-      LANGFUSE_PUBLIC_KEY: pk-lf-1ce9069b-e37a-4f74-8c55-e8a2642025fe
-      LANGFUSE_SECRET_KEY: sk-lf-49f7a7be-037a-4ec9-b1e2-efcba447f32e
-      LANGFUSE_HOST: http://localhost:3002
+      LANGFUSE_HOST: http://langfuse:3000
+      LANGFUSE_PUBLIC_KEY: pk-lf-82b512ec-5a7e-479c-a4d6-5820bf7c46c0
+      LANGFUSE_SECRET_KEY: sk-lf-829bae6d-7c73-401b-a5ac-dd98ea8b6570
+      # Дополнительные настройки для отладки
+      LANGFUSE_DEBUG: "true"
+      LANGFUSE_FLUSH_INTERVAL: "2"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - ./backend:/app
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+      - /tmp:/tmp  # Для логов
+    command: >
+      sh -c "sleep 5 && uvicorn main:app --host 0.0.0.0 --port 8000 --reload --log-level debug"
+    healthcheck:
+      test: |
+        timeout 10 bash -c '
+          if curl -s -f http://localhost:8000/api/health > /dev/null; then
+            echo "HTTP check passed"
+            exit 0
+          elif curl -s http://localhost:8000/ > /dev/null; then
+            echo "Root endpoint check passed"  
+            exit 0
+          elif ss -tln | grep -q :8000; then
+            echo "Port 8000 is listening"
+            exit 0
+          else
+            echo "All checks failed"
+            exit 1
+          fi
+        '
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
 
   # Frontend (Next.js)
   frontend:
@@ -57,20 +90,26 @@ services:
     depends_on:
       - backend
     command: npm run dev
-
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+  
   # LLM Service + Jupyter
-  llm:
-    build:
-      context: ./llm-service
-      dockerfile: Dockerfile
-    ports:
-      - "8888:8888"
-    networks:
-      - app-network
-    volumes:
-      - ./llm-service:/workspace
-    working_dir: /workspace
-    command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+    llm:
+      build:
+        context: ./llm-service
+        dockerfile: Dockerfile
+      ports:
+        - "8888:8888"
+      networks:
+        - app-network
+      volumes:
+        - ./llm-service:/workspace
+      working_dir: /workspace
+      command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
 
 volumes:
   postgres_data:
