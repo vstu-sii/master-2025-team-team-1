@@ -98,19 +98,19 @@ services:
       retries: 3
       start_period: 90s
   
-  # LLM Service + Jupyter
-    # llm:
-    #   build:
-    #     context: ./llm-service
-    #     dockerfile: Dockerfile
-    #   ports:
-    #     - "8888:8888"
-    #   networks:
-    #     - app-network
-    #   volumes:
-    #     - ./llm-service:/workspace
-    #   working_dir: /workspace
-    #   command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+  LLM Service + Jupyter:
+    llm:
+      build:
+        context: ./llm-service
+        dockerfile: Dockerfile
+      ports:
+        - "8888:8888"
+      networks:
+        - app-network
+      volumes:
+        - ./llm-service:/workspace
+      working_dir: /workspace
+      command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
 
 volumes:
   postgres_data:

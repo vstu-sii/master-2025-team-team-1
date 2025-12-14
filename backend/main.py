@@ -54,7 +54,7 @@ else:
     logger.info("ℹ️ Using single process mode for metrics")
     USE_MULTIPROC = False
 
-# ========== HTTP METRICS (без labels для простоты) ==========
+# ========== HTTP METRICS ==========
 HTTP_REQUESTS_TOTAL = Counter(
     'http_requests_total',
     'Total HTTP Requests',
@@ -81,7 +81,7 @@ HTTP_ERRORS_TOTAL = Counter(
     registry=registry
 )
 
-# ========== БИЗНЕС METRICS ==========
+# ========== METRICS ==========
 CHAT_REQUESTS_TOTAL = Counter(
     'chat_requests_total',
     'Total Chat Requests',
@@ -95,7 +95,6 @@ CHAT_RESPONSE_DURATION = Histogram(
     registry=registry
 )
 
-# ========== СИСТЕМНЫЕ METRICS ==========
 PROCESS_MEMORY_BYTES = Gauge(
     'process_memory_bytes',
     'Memory usage in bytes',
@@ -196,11 +195,9 @@ async def metrics_middleware(request: Request, call_next):
         response = await call_next(request)
         latency = time.time() - start_time
         
-        # Обновляем HTTP метрики
         HTTP_REQUESTS_TOTAL.inc()
         HTTP_REQUEST_DURATION.observe(latency)
         
-        # Считаем ошибки 4xx/5xx
         if response.status_code >= 400:
             HTTP_ERRORS_TOTAL.inc()
         
@@ -212,7 +209,6 @@ async def metrics_middleware(request: Request, call_next):
             except Exception as e:
                 logger.error(f"Failed to update trace: {e}")
         
-        # Добавляем заголовки
         response.headers["X-Trace-ID"] = trace_id
         response.headers["X-Response-Time"] = f"{latency:.3f}s"
         
@@ -221,13 +217,11 @@ async def metrics_middleware(request: Request, call_next):
         return response
         
     except Exception as e:
-        # Записываем исключения как ошибки
         HTTP_ERRORS_TOTAL.inc()
         logger.error(f"Request failed: {e}")
         raise
         
     finally:
-        # Уменьшаем счетчик активных запросов
         if not USE_MULTIPROC:
             HTTP_REQUESTS_ACTIVE.dec()
 
@@ -429,7 +423,7 @@ if __name__ == "__main__":
     import uvicorn
     
     print("\n" + "=" * 80)
-    print("🚀 FASTAPI APPLICATION WITH PROMETHEUS METRICS")
+    print("🚀 AI App")
     print("=" * 80)
     print(f"🌐 Langfuse: {'✅ READY' if langfuse_client else '❌ NOT CONFIGURED'}")
     print(f"📈 Prometheus Multiprocess: {'✅ ENABLED' if USE_MULTIPROC else '❌ DISABLED'}")
