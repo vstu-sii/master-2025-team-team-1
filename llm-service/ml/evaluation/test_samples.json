@@ -1,0 +1,59 @@
+[
+  {
+    "resume_text": "Иван Иванов, Python разработчик с 3 годами опыта. Навыки: Python, Django, SQL. Работал в компании X.",
+    "job_description": "Требуется Python разработчик для веб-приложений. Знание Django и SQL. Опыт от 2 лет.",
+    "ground_truth_score": 90,
+    "ground_truth_questions": [
+      "Расскажите подробнее о вашем опыте работы с Django.",
+      "Какие SQL запросы вы писали и для каких целей?",
+      "Опишите ваш опыт в компании X."
+    ],
+    "ground_truth_json": {
+      "candidate_name": "Иван Иванов",
+      "skills": ["Python", "Django", "SQL"],
+      "experience": [{"company": "Компания X", "role": "Python разработчик", "years": 3}],
+      "summary": "Python разработчик с 3 годами опыта."
+    }
+  },
+  {
+    "resume_text": "Мария Петрова, ML Engineer. Опыт: 5 лет. Навыки: Python, TensorFlow, PyTorch, NLP. Работала над проектами в области компьютерного зрения.",
+    "job_description": "Ищем ML Engineer с опытом в NLP и глубоком обучении. Python, TensorFlow. Знание компьютерного зрения приветствуется.",
+    "ground_truth_score": 75,
+    "ground_truth_questions": [
+      "Какие NLP задачи вы решали?",
+      "Опишите ваш опыт с TensorFlow.",
+      "Расскажите о проектах в области компьютерного зрения."
+    ],
+    "ground_truth_json": {
+      "candidate_name": "Мария Петрова",
+      "skills": ["Python", "TensorFlow", "PyTorch", "NLP", "Компьютерное зрение"],
+      "experience": [{"role": "ML Engineer", "years": 5}],
+      "summary": "ML Engineer с 5-летним опытом, специализирующийся на NLP и компьютерном зрении."
+    }
+  },
+  {
+    "resume_text": "Алексей Смирнов, Junior QA Engineer. Опыт 1 год. Навыки: HTML, CSS, JavaScript, React.",
+    "job_description": "Frontend Developer. Требования: JavaScript, React, Redux. Опыт от 2 лет.",
+    "ground_truth_score": 40,
+    "ground_truth_questions": [],
+    "ground_truth_json": {}
+  },
+  {
+    "resume_text": "", 
+    "job_description": "Описание вакансии."
+  },
+  { 
+    "text1": "Кошка сидела на коврике.",
+    "text2": "Feline resting on a rug.",
+    "ground_truth_similarity": 0.7, 
+    "ground_truth_questions": [],
+    "ground_truth_json": {}
+  },
+  {
+    "text1": "Кошка сидела на коврике.",
+    "text2": "Собака гонялась за мячом.",
+    "ground_truth_similarity": 0.1,
+    "ground_truth_questions": [],
+    "ground_truth_json": {}
+  }
+]

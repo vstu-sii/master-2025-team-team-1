@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: langfuse
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  langfuse:
+    image: langfuse/langfuse:2
+    ports:
+      - "3002:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:langfuse@postgres:5432/postgres
+      NEXTAUTH_SECRET: dev-secret-123
+      SALT: langfuse-salt-for-development-aiapp_hr_ai
+      NEXTAUTH_URL: http://localhost:3002
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+    name: master-2025-team-team-1_app-network
+
+volumes:
+  pgdata:
